@@ -1,8 +1,8 @@
 FROM node:22-alpine3.19
 
-RUN adduser --disabled-password --gecos '' sagedsama --uid 10014
+RUN adduser --disabled-password --gecos '' sagedsama --uid 10001
 
-USER sagedsama
+USER 10001
 
 WORKDIR /app/frontend
 

@@ -1,8 +1,8 @@
 FROM python:3.12.6-slim-bookworm
 
-RUN adduser --disabled-password --gecos '' sagedsama --uid 10014
+RUN adduser --disabled-password --gecos '' sagedsama --uid 10000
 
-USER sagedsama
+USER 10001
 
 WORKDIR /app/backend
 
