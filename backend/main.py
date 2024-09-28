@@ -137,3 +137,7 @@ async def find_user(username: str):
             rows.remove(row)
 
     return rows
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
