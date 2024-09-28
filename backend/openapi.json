@@ -5,10 +5,10 @@
         "version": "0.1.0"
     },
     "paths": {
-        "/approval": {
+        "/api/approval": {
             "post": {
                 "summary": "Approve Connection",
-                "operationId": "approve_connection_approval_post",
+                "operationId": "approve_connection_api_approval_post",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -41,10 +41,10 @@
                 }
             }
         },
-        "/check/{channelId}": {
+        "/api/check/{channelId}": {
             "post": {
                 "summary": "Check Availability",
-                "operationId": "check_availability_check__channelId__post",
+                "operationId": "check_availability_api_check__channelId__post",
                 "parameters": [
                     {
                         "name": "channelId",
@@ -88,10 +88,10 @@
                 }
             }
         },
-        "/share/{channelId}": {
+        "/api/share/{channelId}": {
             "post": {
                 "summary": "Share Config",
-                "operationId": "share_config_share__channelId__post",
+                "operationId": "share_config_api_share__channelId__post",
                 "parameters": [
                     {
                         "name": "channelId",
@@ -108,7 +108,7 @@
                     "content": {
                         "application/x-www-form-urlencoded": {
                             "schema": {
-                                "$ref": "#/components/schemas/Body_share_config_share__channelId__post"
+                                "$ref": "#/components/schemas/Body_share_config_api_share__channelId__post"
                             }
                         }
                     }
@@ -135,10 +135,10 @@
                 }
             }
         },
-        "/config": {
+        "/api/config": {
             "post": {
                 "summary": "Create Config",
-                "operationId": "create_config_config_post",
+                "operationId": "create_config_api_config_post",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -171,10 +171,10 @@
                 }
             }
         },
-        "/config/validate": {
+        "/api/config/validate": {
             "post": {
                 "summary": "Validate Config",
-                "operationId": "validate_config_config_validate_post",
+                "operationId": "validate_config_api_config_validate_post",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -207,10 +207,10 @@
                 }
             }
         },
-        "/finduser/{username}": {
+        "/api/finduser/{username}": {
             "get": {
                 "summary": "Find User",
-                "operationId": "find_user_finduser__username__get",
+                "operationId": "find_user_api_finduser__username__get",
                 "parameters": [
                     {
                         "name": "username",
@@ -243,6 +243,22 @@
                     }
                 }
             }
+        },
+        "/api": {
+            "get": {
+                "summary": "Root",
+                "operationId": "root_api_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -270,7 +286,7 @@
                 ],
                 "title": "Approval"
             },
-            "Body_share_config_share__channelId__post": {
+            "Body_share_config_api_share__channelId__post": {
                 "properties": {
                     "filename": {
                         "type": "string",
@@ -311,7 +327,7 @@
                     "encryptedAesKey",
                     "iv"
                 ],
-                "title": "Body_share_config_share__channelId__post"
+                "title": "Body_share_config_api_share__channelId__post"
             },
             "Check": {
                 "properties": {
