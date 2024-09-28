@@ -1,5 +1,5 @@
-apiVersion: choreo.dev/v1
-kind: Function  # Use "Function" for a FastAPI application
+apiVersion: core.choreo.dev/v1beta1
+kind: ComponentConfig  # Use "Function" for a FastAPI application
 metadata:
   name: your-component-name  # Replace with your desired component name
   version: 1.0.0             # Specify the version of your component
