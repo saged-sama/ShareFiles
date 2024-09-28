@@ -1,0 +1,7 @@
+__pycache__
+runserver
+Procfile
+openapi.yaml
+.choreo
+env
+config.db
