@@ -1,5 +1,9 @@
 FROM python:3.12.6-slim-bookworm
 
+RUN adduser --disabled-password --gecos '' sagedsama --uid 10014
+
+USER sagedsama
+
 WORKDIR /app/backend
 
 COPY requirements.txt .
