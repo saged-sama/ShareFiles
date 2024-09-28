@@ -40,7 +40,7 @@ class Config(BaseModel):
 
 connections: Dict[str, WebSocket] = {};
 
-@app.websocket("/ws/connect/{peerId}")
+@app.websocket("/api/ws/connect/{peerId}")
 async def connect_websocket(websocket: WebSocket, peerId: str):
     await websocket.accept()
     connections[peerId] = websocket
@@ -55,7 +55,7 @@ class Approval(BaseModel):
     senderId: str
     id: str
 
-@app.post("/approval")
+@app.post("/api/approval")
 async def approve_connection(data: Approval):
     if data.senderId in connections:
         await connections[data.senderId].send_json({
@@ -68,7 +68,7 @@ class Check(BaseModel):
     filename: str
     filesize: int
 
-@app.post("/check/{channelId}")
+@app.post("/api/check/{channelId}")
 async def check_availability(channelId: str, check: Check):
     sender, receiver = channelId.split("---")
     
@@ -82,7 +82,7 @@ async def check_availability(channelId: str, check: Check):
         await connections[receiver].send_json(data)
     return {"status": "success"}
 
-@app.post("/share/{channelId}")
+@app.post("/api/share/{channelId}")
 async def share_config(channelId: str, 
         filename: str = Form(...),
         filesize: float = Form(...),
@@ -108,7 +108,7 @@ async def share_config(channelId: str,
     await connections[receiver].send_json(data)
     return {"status": "success"}
 
-@app.post("/config")
+@app.post("/api/config")
 async def create_config(data: Config):
     data.id = str(uuid.uuid4())
     cursor.execute('INSERT INTO configs(id, username, avatar, publicKey) VALUES(?, ?, ?, ?)', (data.id, data.username, data.avatar, data.publicKey))
@@ -118,7 +118,7 @@ async def create_config(data: Config):
 class usernameValidation(BaseModel):
     username: str
 
-@app.post("/config/validate")
+@app.post("/api/config/validate")
 async def validate_config(usernameVal: usernameValidation):
     cursor.execute('SELECT * FROM configs WHERE username = ?', (usernameVal.username,))
     row = cursor.fetchone()
@@ -126,7 +126,7 @@ async def validate_config(usernameVal: usernameValidation):
         return {"valid": True}
     return {"valid": False}
 
-@app.get("/finduser/{username}")
+@app.get("/api/finduser/{username}")
 async def find_user(username: str):
     username = username + "%"
     cursor.execute('SELECT * FROM configs WHERE username like ?', (username,))
@@ -138,6 +138,6 @@ async def find_user(username: str):
 
     return rows
 
-@app.get("/")
+@app.get("/api")
 async def root():
     return {"message": "Hello World"}
