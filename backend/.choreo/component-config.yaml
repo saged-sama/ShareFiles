@@ -1,0 +1,7 @@
+name: your-component-name  # Replace with your desired component name
+version: 1.0.0             # Specify the version of your component
+type: function              # Define the type of component
+runtime: python             # Specify the runtime
+entryPoint: main:app        # Update this to match your FastAPI app instance
+requirements:
+  - ./requirements.txt      # Path to your requirements file
