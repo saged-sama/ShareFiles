@@ -8,9 +8,9 @@ WORKDIR /app/backend
 
 COPY requirements.txt .
 
-RUN python -m venv env
+# RUN python -m venv env
 
-RUN /bin/bash -c "source env/bin/activate"
+# RUN /bin/bash -c "source env/bin/activate"
 
 RUN pip install --no-cache-dir -r requirements.txt
 
